@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 const User = require("../models/user");
 
 /* GET users listing. */
-router.post("/allUsers", function (req, res) {
+router.post("/allUsers", (req, res) => {
   User.find({})
     .then((users) => {
       res.json({ status: "200", allUsers: users });
@@ -59,9 +59,7 @@ router.post("/signUp", (req, res) => {
 // find user from db with out password encryption
 router.post("/signIn", (req, res, next) => {
   let userData = req.body;
-  console.log("====================================");
   console.log(userData);
-  console.log("====================================");
 
   User.findOne({ password: userData.password, phone: userData.phone })
     .then((user) => {
